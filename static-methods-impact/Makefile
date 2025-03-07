@@ -57,8 +57,7 @@ define step
 endef
 
 # The main goal
-all: env $(TARGET)/start.txt $(TARGET)/repositories.csv polish clone unregister jpeek filter measure aggregate summarize zip
-	echo -e "\n\nSUCCESS (made by yegor256/cam $(VERSION)$$("$${LOCAL}/help/tdiff.sh" "$$(cat "$(TARGET)/start.txt")"))!"
+all: env $(TARGET)/start.txt $(TARGET)/repositories.csv polish clone unregister jpeek filter measure
 
 install:
 	$(call step,install)

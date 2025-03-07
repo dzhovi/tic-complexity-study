@@ -1,7 +1,7 @@
 *.pdf
 *.zip
 .DS_Store
-.idea/
+../.idea/
 Library/
 dataset/
 install-tl.log
@@ -10,7 +10,7 @@ install-tl/
 node_modules/
 pipeline/
 predictions.csv
-pylint_plugins/__pycache__
+static-methods-impact/pylint_plugins/__pycache__
 target/
 test-zone/
 venv/

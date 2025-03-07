@@ -113,6 +113,7 @@ for type in all cvc; do
                         suffix=${suffix}-${type}
                     fi
 
+                    echo "suffix is ${suffix}"
                     jfile=$(find "${project}" -type f -path "*${package}/${class}.java" -exec bash -c 'realpath --relative-to="${1}" "$2"' _ "${project}" {} \;)
                     echo "${jfile}" >> "${files}"
                     mfile=${TARGET}/measurements/${repo}/${jfile}.m.${suffix}
@@ -122,6 +123,25 @@ for type in all cvc; do
             done
         fi
     done
+done
+
+skeleton="${TARGET}/temp/jpeek/all/${repo}/skeleton.xml"
+
+xmlstarlet sel -t -m "//class" -v "@id" -n "$skeleton" | while read -r class; do
+    count=$(xmlstarlet sel -t -v "count(//class[@id='$class']/methods/method[@static='true'])" "$skeleton")
+
+    # Convert class name to file path format
+    package=$(xmlstarlet sel -t -v "//class[@id='$class']/ancestor::package/@id" "$skeleton" | tr '.' '/')
+    jfile=$(find "${project}" -type f -path "*${package}/${class}.java" -exec bash -c 'realpath --relative-to="${1}" "$2"' _ "${project}" {} \;)
+
+    if [ -n "$jfile" ]; then
+        echo "${jfile}" >> "${files}"
+        mfile=${TARGET}/measurements/${repo}/${jfile}.m.STAT
+        mkdir -p "$(dirname "${mfile}")"
+        echo "$(printf "%.3f" "$count")" > "${mfile}"
+    fi
+
+    echo "Class: $class, Static Methods: $(printf "%.3f" "$count")"
 done
 
 echo "Analyzed ${repo} through jPeek (${pos}/${total}), \
