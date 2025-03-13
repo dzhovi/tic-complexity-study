@@ -84,14 +84,10 @@ done < "${mfiles}"
 echo "repo,java_file,method_name,isStatic,cyclomaticComplexity" > ${ddir}/methods_aggregated.csv
 
 find "${TARGET}/measurements/${repo}" -type f -name "*.csv" | while IFS= read -r class_csv; do
-    # Extract the path starting from 'src/main/java/' (and keep the file name as well)
     class_name=$(echo "$class_csv" | sed 's|^.*/src/main/java/|src/main/java/|')
     class_name=${class_name%.csv}.java
-    # Read each line of the class CSV (which has method-level data)
     while IFS=, read -r method_name isStatic cyclomaticComplexity; do
-        if [ "$method_name" != "methodName" ]; then  # Skip header row
-            # Write data to aggregated CSV with repo name and java_file
-            # Avoid duplicating 'repo' by not adding it to the printf here
+        if [ "$method_name" != "methodName" ]; then
             printf "%s,%s,%s,%s,%s\n" "${repo}" "${class_name}" "${method_name}" "${isStatic}" "${cyclomaticComplexity}" >> ${ddir}/methods_aggregated.csv
         fi
     done < "${class_csv}"
