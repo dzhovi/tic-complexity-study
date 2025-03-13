@@ -14,3 +14,4 @@ static-methods-impact/pylint_plugins/__pycache__
 target/
 test-zone/
 venv/
+/dataset/
