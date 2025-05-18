@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/985473017.svg)](https://doi.org/10.5281/zenodo.15458459)
+
 # Impact of Import instructions on code complexity
 
 ## Project Structure
