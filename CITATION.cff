@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this thesis in your research, please cite it as below."
+title: "Analyzing the Impact of Imports on Code Complexity: A Correlation-Based Study"
+abstract: |
+  The high complexity of a Java class and its tight coupling with other classes are two primary factors that reduce class maintainability.
+  Existing metrics that measure complexity and coupling, such as McCabe's CC, WMC, and Fan-Out, are hard to evaluate precisely,
+  especially for the latest version of Java syntax. We introduced TIC, a new metric that is a count of “import” statements,
+  and demonstrated moderate Spearman’s correlation with WMC (ρ = 0.458) and strong Spearman’s correlation with Fan-Out (ρ = 0.701).
+  We suggest that TIC may be used as a proxy for class maintainability when precision is not a priority.
+version: "1.0.0"
+doi: "10.5281/zenodo.XXXXX"
+repository-code: "https://github.com/dzhovi/tic-complexity-study"
+url: "https://github.com/dzhovi/tic-complexity-study"
+date-released: "2025-05-18"
+authors:
+  - family-names: Vakhidov
+    given-names: Dzhovdion
+    orcid: "https://orcid.org/0009-0009-0233-995X"
+    affiliation: "Innopolis University"
+  - family-names: Bugayenko
+    given-names: Yegor
+    orcid: "https://orcid.org/0000-0001-6370-0678"
+    affiliation: "Huawei"
+keywords:
+  - Java
+  - software complexity
+  - code metrics
+  - coupling
+  - import count
+license: Apache-2.0
